@@ -16,7 +16,7 @@ import scala.io.Source
 
 
 
-trait RoutePath extends SimpleRoutingApp  {
+trait RoutePath extends App with SimpleRoutingApp  {
   implicit val system = ActorSystem("on-spray-can")
   val route: Route =
 

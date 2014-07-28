@@ -15,6 +15,7 @@ def articleSearcher(searchString: String,otherList: List[String],intCount : Int)
     else if (frontSlice.toString.trim == newSearch.toString.trim){
       thatList = otherList :+ newArt.trim
 
+
     }
     articleSearcher(searchString,thatList,intCount + 8)
 

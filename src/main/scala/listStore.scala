@@ -25,9 +25,5 @@ object ListStore  {
       newList
     }
   }
-  def getContent(): Unit = {
-    val newList = completeArticleList.flatten
-    println(newList)
 
-  }
 }

@@ -2,7 +2,9 @@
 package com.banno.finalProj
 import spray.json._
 import DefaultJsonProtocol._
-
+// turn the storage into a case class to store the objects
+// only return json articles not anything else
+// cut down the number of lists and make it only like 1 or 2 and then decide if you still need list store or not
 object StringSlice {
 
   def xmlSlice(intCount: Int): Unit = {
@@ -80,7 +82,7 @@ object StringSlice {
 
 
   //this builds the readable string for the user to read
-  def stringBuilder(id: String,title: String,author: String,pub: String,up:String,ab:String): List[String]  ={
+  def stringBuilder(id: String,title: String,author: String,pub: String,up:String,ab:String): Unit  ={
 
     var articleList: List[String] = Nil
 
@@ -91,7 +93,8 @@ object StringSlice {
     val strPub = "Published: "+pub+"\n"
     val strUp = "Updated: "+up+"\n"
     val strAb = "Abstract: "+newAb+"...."+"\n"
-    jsonFormatting(strId,strTitle,strAuthor,strPub,strUp,strAb)
+    val newArt = ArticleStore.Article(strId,strTitle,strAuthor,strPub,strUp,strAb)
+    ArticleStore.createArticle(newArt)
     ListStore.dictList = ListStore.dictList :+id
     ListStore.dictList = ListStore.dictList :+title
     ListStore.dictList = ListStore.dictList :+author
@@ -107,28 +110,8 @@ object StringSlice {
     articleList = articleList :+"    "+ strUp
     articleList = articleList :+"    "+ strAb
     articleList = articleList :+ "]"
+
     listStore(articleList,strTitle)
-    articleList
-
   }
 
-  def jsonFormatting(id: String,title: String,author: String,pub: String,up:String,ab:String): Unit = {
-    case class ArticleInfo(id: String,title:String, author: String, pub: String, up: String,  ab:String)
-    object MyJsonProtocol extends DefaultJsonProtocol {
-      implicit val colorFormat = jsonFormat6(ArticleInfo)
-    }
-    import MyJsonProtocol._
-    //val json = ArticleInfo(StringSlice.newId.text,StringSlice.newTitle,StringSlice.newAuthor,StringSlice.newPub,StringSlice.newUp,StringSlice.matchFind).toJson
-    val json = ArticleInfo(id,title,author,pub,up,ab).toJson
-    val color = json.convertTo[ArticleInfo]
-    println("Aritlces: [")
-    println(color.id)
-    println(color.title)
-    println(color.author)
-    println(color.pub)
-    println(color.up)
-    println(color.ab)
-    println("]")
-
-  }
 }

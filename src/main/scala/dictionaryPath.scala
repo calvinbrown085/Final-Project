@@ -1,14 +1,20 @@
 
 package com.banno.finalProj
+//if the file is empty return none instead of blowing up the program
+import spray.json._
+import DefaultJsonProtocol._
 
 
 object DictionaryPath {
-
-  def dictPrint(): List[Any] = {
+  private var totalDictList: List[DictWords] = Nil
+  case class DictWords(word: String)
+  def dictPrint(): Option[List[Any]] = {
+    if (ListStore.completeArticleList == Nil){
+      return None
+    }
     val s = System.currentTimeMillis.toDouble
-
+    println("Dictionary: [")
     var wordList: List[Any] = Nil
-    wordList = wordList :+ "Dictionary: ["+"\n"
 
     var slicedList: List[Any] = Nil
 
@@ -44,15 +50,36 @@ object DictionaryPath {
 
         }
         else {
+          val newDict = DictWords(s.toString)
+          createDictList(newDict)
           wordList = wordList :+s+","+"\n"
         }
       }
 
     }
-    wordList = wordList :+ "]"
-    println(wordList)
     println((System.currentTimeMillis - s) / 1000+" Seconds")
-
-    return wordList
+    println("]")
+    Some(wordList)
   }
+
+
+  def createDictList(newDict: DictWords): List[DictWords] = {
+    totalDictList =  totalDictList :+ newDict
+    dictJsonFormatting(newDict)
+    totalDictList
+
+  }
+
+  def dictJsonFormatting(newDict: DictWords): Unit = {
+    object MyJsonProtocol extends DefaultJsonProtocol {
+      implicit val format = jsonFormat1(DictWords)
+    }
+    import MyJsonProtocol._
+    val toJson = DictWords(newDict.word).toJson
+    val dict = toJson.convertTo[DictWords]
+    println("  "+dict.word)
+
+
+  }
+
 }
