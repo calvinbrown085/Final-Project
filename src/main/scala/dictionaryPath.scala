@@ -59,7 +59,7 @@ object DictionaryPath {
     }
     println((System.currentTimeMillis - s) / 1000+" Seconds")
     println("]")
-    Some(wordList)
+    return(Some(wordList))
   }
 
 
