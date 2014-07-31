@@ -9,7 +9,7 @@ object StringSlice {
 
   def xmlSlice(intCount: Int): Unit = {
 
-    if (intCount > 8){
+    if (intCount > 9){
       return
     }
     else {

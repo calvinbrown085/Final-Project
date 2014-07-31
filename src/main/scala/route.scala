@@ -32,7 +32,7 @@ trait RoutePath extends App with SimpleRoutingApp  {
             <html>
               <h1>Welcome, please get some updates from the verge<em> used by spray</em> on <em>spray-can</em>!</h1>in
               <p>(<a href="/stop?method=post">please click this to stop the server</a>)</p>
-              <o>(<a href="/articles?method=post">please click this to get the latest article</a>)</o>
+              <o>(<a href="/articles?method=post">please click this to get the latest article</a>)</o>"         "
               <m>(<a href="/dictionary?method=post">please click this to get the dictionary</a>)</m>
             </html>
           }
@@ -60,10 +60,10 @@ trait RoutePath extends App with SimpleRoutingApp  {
       (post | parameter('method ! "post")) {
       path("articles"){
         complete{
-          StringSlice.xmlSlice(1)
+          StringSlice.xmlSlice(0)
 
           <html>
-            <q>{ListStore.getList()}</q>
+            <q>{ArticleStore.articleFile}</q>
           </html>
         }
       }
