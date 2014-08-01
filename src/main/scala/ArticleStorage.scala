@@ -14,7 +14,7 @@ object ArticleStore {
     val outFile = new java.io.FileWriter("src/main/resources/testerFile.txt",true)
 
     if (articleFile contains newArt.id){
-      println(articleFile contains newArt.id)
+
       Nil
     }
     else{
