@@ -8,7 +8,6 @@ object ArticleStore {
   var totalArticleList: List[Article] = Nil
   val articleFile = scala.io.Source.fromFile("src/main/resources/testerFile.txt").mkString
   case class Article(id: String,title: String,author: String,pub: String,up: String,ab: String)
-  var intCount = 1
   println("###########################################################################################")
   println(articleFile)
   def createArticle(newArt: Article): List[Article] = {
