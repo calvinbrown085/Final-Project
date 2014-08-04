@@ -37,7 +37,8 @@ import scala.io.Source
 trait RoutePath extends App with SimpleRoutingApp  {
 
   implicit  val system = ActorSystem()
-  val fileAccessActor = system.actorOf(Props[MyActor], name = "myActor1")
+
+  val masterActor = system.actorOf(Props[MyActor], name = "myActor1")
 
   val route: Route =
 
@@ -51,7 +52,7 @@ trait RoutePath extends App with SimpleRoutingApp  {
         path("home") {
           complete {
             <html>
-              <h1>Welcome, please get some updates from the verge<em> used by spray</em> on <em>spray-can</em>!</h1>in
+              <h1>Welcome, please get some updates from the verge!</h1>in
               <p>(<a href="/stop?method=post">please click this to stop the server</a>)</p>
               <o>(<a href="/articles?method=post">please click this to get the latest article</a>)</o>"         "
               <m>(<a href="/dictionary?method=post">please click this to get the dictionary</a>)</m>
@@ -73,7 +74,7 @@ trait RoutePath extends App with SimpleRoutingApp  {
       path("dictionary"){
         complete{
           <html>
-            <q>{DictionaryPath.dictPrint()}</q>
+            <q>{masterActor ! "dictPrint"}</q>
           </html>
         }
       }
@@ -81,9 +82,9 @@ trait RoutePath extends App with SimpleRoutingApp  {
       (post | parameter('method ! "post")) {
       path("articles"){
         complete{
-          StringSlice.xmlSlice(0)
+          masterActor ! "stringSlice"
           <html>
-            <q>{ArticleStore.articleFile}</q>
+            <q>{masterActor ! "file"}</q>
           </html>
         }
       }
@@ -146,8 +147,10 @@ trait RoutePath extends App with SimpleRoutingApp  {
 class MyActor extends Actor {
   def receive = {
     case "test" => println("received test")
-    case "getArticles" => println(ArticleStore.articleFile)
-    case _      => println("received unknown message")
+    case "file" => println(ArticleStore.articleFile)
+    case "stringSlice" => StringSlice.xmlSlice(0)
+    case "dictPrint" => DictionaryPath.dictPrint()
+    case _      =>  println("received unknown message")
 
   }
 

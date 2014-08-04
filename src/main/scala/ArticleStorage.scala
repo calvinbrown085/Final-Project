@@ -15,8 +15,10 @@ object ArticleStore {
 
   def createArticle(newArt: Article): List[Article] = {
     val outFile = new java.io.FileWriter("src/main/resources/testerFile.txt",true)
-    if(articleFile contains newArt.id)  Nil
-
+    if(articleFile contains newArt.id){
+      outFile.close
+      Nil
+    }
     else {
       println("New Article(s)"+"\n")
       totalArticleList = totalArticleList :+ newArt
@@ -29,10 +31,11 @@ object ArticleStore {
       outFile.write("\n")
       jsonFormatting(newArt)
 
+       outFile.close
 
 
     }
-    outFile.close
+
     totalArticleList
 
 
