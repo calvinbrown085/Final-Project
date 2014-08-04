@@ -13,7 +13,13 @@ def articleSearcher(searchString: String,otherList: List[String],intCount : Int)
     }
     else if (frontSlice.toString.trim == searchString.toLowerCase.trim){
       thatList = otherList :+ newList(intCount + 5)
-
+      println("Id: "+newList(intCount))
+      println("Title: "+newList(intCount + 1))
+      println("Author: "+newList(intCount + 2))
+      println("Published: "+newList(intCount + 3))
+      println("Updated: "+newList(intCount + 4))
+      println("Content: "+newList(intCount + 5))
+      println("______________________________________________________________________")
 
     }
     articleSearcher(searchString,thatList,intCount + 8)
