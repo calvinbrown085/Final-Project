@@ -12,7 +12,7 @@ def articleSearcher(searchString: String,otherList: List[String],intCount : Int)
       return otherList
     }
     else if (frontSlice.toString.trim == searchString.toLowerCase.trim){
-      thatList = otherList :+ newArt.trim
+      thatList = otherList :+ newList(intCount + 5)
 
 
     }
