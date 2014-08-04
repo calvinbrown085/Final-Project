@@ -15,7 +15,7 @@ object ArticleStore {
 
   def createArticle(newArt: Article): List[Article] = {
     val outFile = new java.io.FileWriter("src/main/resources/testerFile.txt",true)
-    if(articleFile contains newArt.id){
+    if(articleFile.toLowerCase contains newArt.id.toLowerCase){
       outFile.close
       Nil
     }
