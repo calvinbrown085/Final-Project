@@ -8,7 +8,7 @@ import akka.actor.{ ActorSystem, Actor, Props }
 import akka.routing.RoundRobinRouter
 
 object ArticleStore {
-  var totalArticleList: List[Article] = Nil
+
   val articleFile = scala.io.Source.fromFile("src/main/resources/testerFile.txt").mkString
 
   case class Article(id: String,title: String,author: String,pub: String,up: String,ab: String)
@@ -21,7 +21,7 @@ object ArticleStore {
     }
     else {
       println("New Article(s)"+"\n")
-      totalArticleList = totalArticleList :+ newArt
+      ListStore.totalArticleList = ListStore.totalArticleList :+ newArt
       outFile.write(newArt.id)
       outFile.write(newArt.title)
       outFile.write(newArt.author)
@@ -36,7 +36,7 @@ object ArticleStore {
 
     }
 
-    totalArticleList
+    ListStore.totalArticleList
 
 
   }

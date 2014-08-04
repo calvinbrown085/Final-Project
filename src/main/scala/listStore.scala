@@ -6,7 +6,7 @@ object ListStore  {
   var completeArticleList: List[List[String]] = Nil
   var articleStr: String = ""
   var dictList: List[String] = Nil
-
+  var totalArticleList: List[ArticleStore.Article] = Nil
   def getDictList(): List[String] = {
 
     dictList
@@ -25,5 +25,6 @@ object ListStore  {
       newList
     }
   }
+
 
 }
