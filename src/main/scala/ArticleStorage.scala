@@ -9,8 +9,8 @@ import akka.routing.RoundRobinRouter
 
 object ArticleStore {
   var totalArticleList: List[Article] = Nil
-  Boot.fileAccessActor ! "getArticles"
   val articleFile = scala.io.Source.fromFile("src/main/resources/testerFile.txt").mkString
+
   case class Article(id: String,title: String,author: String,pub: String,up: String,ab: String)
 
   def createArticle(newArt: Article): List[Article] = {
