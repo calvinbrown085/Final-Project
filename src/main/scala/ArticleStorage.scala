@@ -2,22 +2,22 @@
 package com.banno.finalProj
 import spray.json._
 import DefaultJsonProtocol._
-
+import akka.actor.Actor
+import akka._
+import akka.actor.{ ActorSystem, Actor, Props }
+import akka.routing.RoundRobinRouter
 
 object ArticleStore {
   var totalArticleList: List[Article] = Nil
+  Boot.fileAccessActor ! "getArticles"
   val articleFile = scala.io.Source.fromFile("src/main/resources/testerFile.txt").mkString
   case class Article(id: String,title: String,author: String,pub: String,up: String,ab: String)
-  println("###########################################################################################")
-  println(articleFile)
+
   def createArticle(newArt: Article): List[Article] = {
     val outFile = new java.io.FileWriter("src/main/resources/testerFile.txt",true)
+    if(articleFile contains newArt.id)  Nil
 
-    if (articleFile contains newArt.id){
-
-      Nil
-    }
-    else{
+    else {
       println("New Article(s)"+"\n")
       totalArticleList = totalArticleList :+ newArt
       outFile.write(newArt.id)
@@ -30,11 +30,14 @@ object ArticleStore {
       jsonFormatting(newArt)
 
 
+
     }
     outFile.close
     totalArticleList
 
+
   }
+
 
 
   def jsonFormatting(newArt: Article): Unit = {

@@ -11,6 +11,7 @@ import akka.util.Timeout
 import akka.event.Logging
 import akka.pattern.{ ask, pipe }
 
+
 import scala.concurrent.duration._
 import scala.concurrent.Future
 import scala.util.{Try, Success, Failure}
@@ -20,7 +21,7 @@ import scala.concurrent.Await
 import com.typesafe.config.ConfigFactory
 import spray.routing._
 import spray.routing.SimpleRoutingApp
-import akka.actor.{ActorSystem,Props}
+import akka.actor.{ActorSystem, Actor, Props}
 import akka.actor.ActorSystem
 import akka.io.IO
 import spray.can.Http
@@ -34,7 +35,10 @@ import scala.io.Source
 
 
 trait RoutePath extends App with SimpleRoutingApp  {
-  implicit val system = ActorSystem("on-spray-can")
+
+  implicit  val system = ActorSystem()
+  val fileAccessActor = system.actorOf(Props[MyActor], name = "myActor1")
+
   val route: Route =
 
 
@@ -78,7 +82,6 @@ trait RoutePath extends App with SimpleRoutingApp  {
       path("articles"){
         complete{
           StringSlice.xmlSlice(0)
-
           <html>
             <q>{ArticleStore.articleFile}</q>
           </html>
@@ -136,6 +139,18 @@ trait RoutePath extends App with SimpleRoutingApp  {
       path("ping"){
         complete("pong")
       }
+
+
+}
+
+class MyActor extends Actor {
+  def receive = {
+    case "test" => println("received test")
+    case "getArticles" => println(ArticleStore.articleFile)
+    case _      => println("received unknown message")
+
+  }
+
 
 
 }

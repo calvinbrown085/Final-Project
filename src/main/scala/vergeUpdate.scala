@@ -41,6 +41,7 @@ object StringSlice {
 
 
       stringBuilder(newId.text,newTitle.text,newEAuthor.text,newPub.text,newUp.text,matchFind.trim)
+
       xmlSlice(intCount + 1)
     }
   }
