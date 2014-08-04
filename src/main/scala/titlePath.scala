@@ -10,7 +10,7 @@ object TitleSearch {
       println(otherList)
       return otherList
     }
-    else if (newList(intCount).toString.toLowerCase contains " "+searchString.toLowerCase+" "){
+    else if (newList(intCount).toString.toLowerCase contains " "+searchString.toLowerCase){
       thatList = otherList :+ newList(intCount).trim
 
     }
