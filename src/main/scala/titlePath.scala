@@ -7,17 +7,18 @@ object TitleSearch {
     val newList = ListStore.getList()
     var thatList = otherList
     if (intCount >= newList.length - 2) {
-      println(otherList)
+
       return otherList
     }
     else if (newList(intCount).toString.toLowerCase contains " "+searchString.toLowerCase){
       thatList = otherList :+ newList(intCount).trim
-      println("Id: "+newList(intCount - 1))
-      println("Title: "+newList(intCount))
-      println("Author: "+newList(intCount + 1))
-      println("Published: "+newList(intCount + 2))
-      println("Updated: "+newList(intCount + 3))
-      println("Content: "+newList(intCount + 4))
+      println("These are the articles I found with your search criteria on the titles")
+      println(newList(intCount - 1))
+      println(newList(intCount))
+      println(newList(intCount + 1))
+      println(newList(intCount + 2))
+      println(newList(intCount + 3))
+      println(newList(intCount + 4))
       println("______________________________________________________________________")
     }
     titleSearcher(searchString,thatList,intCount + 8)
