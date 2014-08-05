@@ -13,7 +13,7 @@ object ContentSearch {
     }
     else if (newList(intCount).toString.toLowerCase contains " "+searchString.toLowerCase){
       thatList = otherList :+ newList(intCount).trim
-      println("These are the articles I found with your search criteria on the content")
+      println("These are the articles I found with your search criteria"+" "+searchString+" "+"on the content")
       println(newList(intCount - 5))
       println(newList(intCount - 4))
       println(newList(intCount - 3))

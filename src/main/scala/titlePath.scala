@@ -12,7 +12,7 @@ object TitleSearch {
     }
     else if (newList(intCount).toString.toLowerCase contains " "+searchString.toLowerCase){
       thatList = otherList :+ newList(intCount).trim
-      println("These are the articles I found with your search criteria on the titles")
+      println("These are the articles I found with your search criteria"+" "+searchString+" "+"on the titles")
       println(newList(intCount - 1))
       println(newList(intCount))
       println(newList(intCount + 1))
