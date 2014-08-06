@@ -12,7 +12,9 @@ libraryDependencies ++= Seq(
   "io.spray" % "spray-routing" % "1.2.1",
   "io.spray" % "spray-can" % "1.2.1",
   "com.typesafe.akka"   %%  "akka-testkit"  % "2.2.4"   % "test",
-  "io.spray" %% "spray-json" % "1.2.6"
+  "io.spray" %% "spray-json" % "1.2.6",
+  "org.squeryl" %% "squeryl" % "0.9.5-6",
+  "postgresql" % "postgresql" % "8.4-701.jdbc4"
 )
 
 
