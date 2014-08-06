@@ -7,6 +7,15 @@ import akka._
 import akka.actor.{ ActorSystem, Actor, Props }
 import akka.routing.RoundRobinRouter
 
+
+import org.squeryl.PrimitiveTypeMode._
+import org.squeryl.Schema
+import org.squeryl.annotations.Column
+import org.squeryl.Session
+import org.squeryl.SessionFactory
+import org.squeryl.adapters.PostgreSqlAdapter
+import java.util.Calendar
+
 object ArticleStore {
 
   val articleFile = scala.io.Source.fromFile("src/main/resources/testerFile.txt").mkString

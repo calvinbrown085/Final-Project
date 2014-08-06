@@ -84,7 +84,7 @@ trait RoutePath extends App with SimpleRoutingApp  {
         complete{
           masterActor ! "stringSlice"
           <html>
-            <q>{masterActor ! "file"}</q>
+            <q>{masterActor ! "getFile"}</q>
           </html>
         }
       }
@@ -146,8 +146,7 @@ trait RoutePath extends App with SimpleRoutingApp  {
 
 class MyActor extends Actor {
   def receive = {
-    case "test" => println("received test")
-    case "file" => println(ArticleStore.articleFile)
+    case "getFile" => println(ArticleStore.articleFile)
     case "stringSlice" => StringSlice.xmlSlice(0)
     case "dictPrint" => DictionaryPath.dictPrint()
     case _      =>  println("received unknown message")
