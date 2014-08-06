@@ -86,7 +86,6 @@ object StringSlice {
   def stringBuilder(id: String,title: String,author: String,pub: String,up:String,ab:String): Unit  ={
 
     var articleList: List[String] = Nil
-
     val newAb = sliceHelper(ab)
     val strId = "id: "+id+"\n"
     val strTitle = "title: "+title+"\n"
@@ -95,7 +94,8 @@ object StringSlice {
     val strUp = "Updated: "+up+"\n"
     val strAb = "Abstract: "+newAb+"...."+"\n"
     val newArt = ArticleStore.Article(strId,strTitle,strAuthor,strPub,strUp,strAb)
-    ArticleStore.createArticle(newArt)
+    ArticleStore.storeArticle(newArt)
+    ArticleStore.createList(newArt)
     ListStore.dictList = ListStore.dictList :+id
     ListStore.dictList = ListStore.dictList :+title
     ListStore.dictList = ListStore.dictList :+author
@@ -111,7 +111,6 @@ object StringSlice {
     articleList = articleList :+"    "+ strUp
     articleList = articleList :+"    "+ strAb
     articleList = articleList :+ "]"
-
     listStore(articleList,strTitle)
   }
 

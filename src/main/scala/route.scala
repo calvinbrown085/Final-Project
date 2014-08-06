@@ -39,7 +39,7 @@ trait RoutePath extends App with SimpleRoutingApp  {
   implicit  val system = ActorSystem()
 
   val masterActor = system.actorOf(Props[MyActor].withDispatcher("my-dispatcher"), name = "myActor1")
-
+  implicit val timeout = Timeout(30 seconds)
   val route: Route =
 
 
@@ -82,9 +82,10 @@ trait RoutePath extends App with SimpleRoutingApp  {
       (post | parameter('method ! "post")) {
       path("articles"){
         complete{
+          masterActor ? "PrintFrontPage"
           masterActor ! "stringSlice"
           <html>
-            <q>{masterActor ! "getFile"}</q>
+            <q>{}</q>
           </html>
         }
       }
@@ -146,7 +147,7 @@ trait RoutePath extends App with SimpleRoutingApp  {
 
 class MyActor extends Actor {
   def receive = {
-    case "getFile" => println(ArticleStore.articleFile)
+    case "PrintFrontPage" => PrintFrontPage.xmlSlice(0)
     case "stringSlice" => StringSlice.xmlSlice(0)
     case "dictPrint" => DictionaryPath.dictPrint()
     case _      =>  println("received unknown message")

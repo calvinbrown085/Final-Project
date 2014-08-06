@@ -18,38 +18,39 @@ import java.util.Calendar
 
 object ArticleStore {
 
-  val articleFile = scala.io.Source.fromFile("src/main/resources/testerFile.txt").mkString
+  Class.forName("org.postgresql.Driver")
+  SessionFactory.concreteFactory = Some(() =>
+    Session.create(
+      java.sql.DriverManager.getConnection("jdbc:postgresql://localhost/ArticleStorage","calvinb","calwil100"),
+      new PostgreSqlAdapter()))
+  case class Article(@Column("id") id: String,
+                     @Column("title") title: String,
+                     @Column("author") author: String,
+                     @Column("published") pub: String,
+                     @Column("updated") up: String,
+                     @Column("abstract") ab: String)
 
-  case class Article(id: String,title: String,author: String,pub: String,up: String,ab: String)
-
-  def createArticle(newArt: Article): List[Article] = {
-    val outFile = new java.io.FileWriter("src/main/resources/testerFile.txt",true)
-    if(articleFile.toLowerCase contains newArt.id.toLowerCase){
-      outFile.close
-      Nil
-    }
-    else {
-      println("New Article(s)"+"\n")
-      ListStore.totalArticleList = ListStore.totalArticleList :+ newArt
-      outFile.write(newArt.id)
-      outFile.write(newArt.title)
-      outFile.write(newArt.author)
-      outFile.write(newArt.pub)
-      outFile.write(newArt.up)
-      outFile.write(newArt.ab)
-      outFile.write("\n")
-      jsonFormatting(newArt)
-
-       outFile.close
-
-
-    }
-
-    ListStore.totalArticleList
+  def storeArticle(newArt: Article): Unit = {
+      transaction {
+        ArticleSystem.articles.insert(Article(newArt.id,
+                                              newArt.title,
+                                              newArt.author,
+                                              newArt.pub,
+                                              newArt.up,
+                                              newArt.ab))
+      }
+      transaction {
+        val queriedArticles: List[Article] = from(ArticleSystem.articles)(e => select(e)).toList
 
 
+
+
+      }
   }
-
+  def createList(newArt: Article): Unit = {
+    ListStore.totalArticleList = ListStore.totalArticleList :+ newArt
+    jsonFormatting(newArt)
+  }
 
 
   def jsonFormatting(newArt: Article): Unit = {
