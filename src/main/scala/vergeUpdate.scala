@@ -2,9 +2,6 @@
 package com.banno.finalProj
 import spray.json._
 import DefaultJsonProtocol._
-// turn the storage into a case class to store the objects
-// only return json articles not anything else
-// cut down the number of lists and make it only like 1 or 2 and then decide if you still need list store or not
 object StringSlice {
 
   def xmlSlice(intCount: Int): Unit = {
