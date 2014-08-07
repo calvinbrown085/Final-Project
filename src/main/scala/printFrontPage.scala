@@ -11,12 +11,13 @@ object PrintFrontPage {
       return Some(completeArticleList)
     }
 
-    else if(articleList(2).trim == articleTitle.trim){
+    else{
 
       ListStore.completeArticleList = ListStore.completeArticleList :+ articleList
     }
 
     Some(completeArticleList)
+
   }
 
 

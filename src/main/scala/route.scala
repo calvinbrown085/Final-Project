@@ -19,7 +19,7 @@ import spray.http._
 
 
 
-trait RoutePath extends App with SimpleRoutingApp  {
+trait RoutePath extends  SimpleRoutingApp  {
 
   implicit  val system = ActorSystem()
 
