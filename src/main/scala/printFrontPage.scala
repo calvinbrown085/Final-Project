@@ -6,9 +6,9 @@ import DefaultJsonProtocol._
 // cut down the number of lists and make it only like 1 or 2 and then decide if you still need list store or not
 object PrintFrontPage {
 
-  def xmlSlice(intCount: Int): Unit = {
+  def xmlSlice(searchCount: Int): Unit = {
 
-    if (intCount > 9){
+    if (searchCount > 9){
       return
     }
     else {
@@ -17,66 +17,66 @@ object PrintFrontPage {
       val newXml = xml.XML.load("http://www.theverge.com/rss/frontpage.xml")
 
       val newRawId = newXml\"entry"\"id"
-      val newId = newRawId(intCount)
+      val newId = newRawId(searchCount)
       //this gets the id
 
       val newRawTitle = newXml\\"entry"\\"title"
-      val newTitle = newRawTitle(intCount)
+      val newTitle = newRawTitle(searchCount)
       //This gets the title
       val newRawAuthor = newXml\\"author"\\"name"
-      val newEAuthor = newRawAuthor(intCount)
+      val newEAuthor = newRawAuthor(searchCount)
 
       //this gets the author
       val newRawPub = newXml\\"entry"\"published"
-      val newPub = newRawPub(intCount)
+      val newPub = newRawPub(searchCount)
       //this gets the published date
       val newRawUp = newXml\\"entry"\"updated"
-      val newUp = newRawUp(intCount)
+      val newUp = newRawUp(searchCount)
       //this is got get the updated date
       val newRawContent = newXml\"entry"\"content"
-      val newContent = newRawContent(intCount)
+      val newContent = newRawContent(searchCount)
       val matchFind = newReg.replaceAllIn(newContent.text,"")
       //this is to get the content
 
 
       stringBuilder(newId.text,newTitle.text,newEAuthor.text,newPub.text,newUp.text,matchFind.trim)
 
-      xmlSlice(intCount + 1)
+      xmlSlice(searchCount + 1)
     }
   }
-  def listStore(newList: List[String],title: String): Option[List[String]] = {
-    val anotherList: List[String] = ListStore.completeArticleList.flatten
+  def listStore(articleList: List[String],articleTitle: String): Option[List[String]] = {
+    val completeArticleList: List[String] = ListStore.completeArticleList.flatten
     if (ListStore.completeArticleList == Nil){
-      ListStore.completeArticleList = ListStore.completeArticleList :+ newList
+      ListStore.completeArticleList = ListStore.completeArticleList :+ articleList
 
-      return Some(anotherList)
+      return Some(completeArticleList)
     }
 
-    else if(newList(2).trim == title.trim){
+    else if(articleList(2).trim == articleTitle.trim){
 
-      ListStore.completeArticleList = ListStore.completeArticleList :+ newList
+      ListStore.completeArticleList = ListStore.completeArticleList :+ articleList
     }
 
-    Some(anotherList)
+    Some(completeArticleList)
   }
 
 
 
 
   // this slices the abstract to make it more readable for the user
-  def sliceHelper(ab: String): String = {
-    var newList = ab.toList
-    var newStr = ""
+  def sliceHelper(content: String): String = {
+    var contentList = content.toList
+    var contentStr = ""
     strSliceHelper(0)
     def strSliceHelper(intCount: Int): String = {
-      if(newList(intCount).toString == "." && intCount > 50){
-        newList = newList.slice(0,intCount)
-        newStr = newList.mkString
-        return newStr
+      if(contentList(intCount).toString == "." && intCount > 50){
+        contentList = contentList.slice(0,intCount)
+        contentStr = contentList.mkString
+        return contentStr
       }
       strSliceHelper(intCount + 1)
     }
-    newStr
+    contentStr
   }
 
 
@@ -102,7 +102,7 @@ object PrintFrontPage {
     articleList = articleList :+"    "+ strAb
     articleList = articleList :+ "]"
     listStore(articleList,strTitle)
-    print(articleList)
+    println(articleList)
 
   }
 }

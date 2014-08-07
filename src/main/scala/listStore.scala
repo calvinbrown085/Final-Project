@@ -4,15 +4,15 @@ package com.banno.finalProj
 
 object ListStore  {
   var completeArticleList: List[List[String]] = Nil
-  var articleStr: String = ""
-  var dictList: List[String] = Nil
+  var articleString: String = ""
+  var dictionaryList: List[String] = Nil
   var totalArticleList: List[ArticleStore.Article] = Nil
   def getDictList(): List[String] = {
 
-    dictList
+    dictionaryList
   }
   def getArticle(): String = {
-    articleStr
+    articleString
   }
   //this will get the list and print it out to the user
   def getList(): List[String] = {

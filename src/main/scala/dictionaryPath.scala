@@ -18,7 +18,7 @@ object DictionaryPath {
 
     var slicedList: List[Any] = Nil
 
-    var wordDict = ListStore.dictList.mkString.split(" ").toList
+    var wordDict = ListStore.dictionaryList.mkString.split(" ").toList
     wordDict = wordDict.map(_.toLowerCase())
     wordDict = wordDict.filterNot(_ == "reading&hellip;")
     dictHelper(0)
@@ -65,21 +65,11 @@ object DictionaryPath {
 
   def createDictList(newDict: DictWords): List[DictWords] = {
     totalDictList =  totalDictList :+ newDict
-    dictJsonFormatting(newDict)
+    JsonFormatting.dictJsonFormatting(newDict)
     totalDictList
 
   }
 
-  def dictJsonFormatting(newDict: DictWords): Unit = {
-    object MyJsonProtocol extends DefaultJsonProtocol {
-      implicit val format = jsonFormat1(DictWords)
-    }
-    import MyJsonProtocol._
-    val toJson = DictWords(newDict.word).toJson
-    val dict = toJson.convertTo[DictWords]
-    println("  "+dict.word)
 
-
-  }
 
 }
