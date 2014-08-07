@@ -44,6 +44,24 @@ object PrintFrontPage {
       xmlSlice(intCount + 1)
     }
   }
+  def listStore(newList: List[String],title: String): Option[List[String]] = {
+    val anotherList: List[String] = ListStore.completeArticleList.flatten
+    if (ListStore.completeArticleList == Nil){
+      ListStore.completeArticleList = ListStore.completeArticleList :+ newList
+
+      return Some(anotherList)
+    }
+
+    else if(newList(2).trim == title.trim){
+
+      ListStore.completeArticleList = ListStore.completeArticleList :+ newList
+    }
+
+    Some(anotherList)
+  }
+
+
+
 
   // this slices the abstract to make it more readable for the user
   def sliceHelper(ab: String): String = {
@@ -83,6 +101,7 @@ object PrintFrontPage {
     articleList = articleList :+"    "+ strUp
     articleList = articleList :+"    "+ strAb
     articleList = articleList :+ "]"
+    listStore(articleList,strTitle)
     println(articleList)
   }
 }
