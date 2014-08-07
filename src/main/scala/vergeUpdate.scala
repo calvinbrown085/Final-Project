@@ -45,22 +45,7 @@ object StringSlice {
       xmlSlice(intCount + 1)
     }
   }
-  //This will store the complete article list in a list to print out to users and be used else where
-  def listStore(newList: List[String],title: String): Option[List[String]] = {
-    val anotherList: List[String] = ListStore.completeArticleList.flatten
-    if (ListStore.completeArticleList == Nil){
-      ListStore.completeArticleList = ListStore.completeArticleList :+ newList
 
-      return Some(anotherList)
-    }
-
-    else if(newList(2).trim == title.trim){
-
-      ListStore.completeArticleList = ListStore.completeArticleList :+ newList
-    }
-
-    Some(anotherList)
-  }
 
 
 
@@ -111,7 +96,7 @@ object StringSlice {
     articleList = articleList :+"    "+ strUp
     articleList = articleList :+"    "+ strAb
     articleList = articleList :+ "]"
-    listStore(articleList,strTitle)
+
   }
 
 }

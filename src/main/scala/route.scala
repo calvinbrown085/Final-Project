@@ -82,6 +82,7 @@ trait RoutePath extends App with SimpleRoutingApp  {
       (post | parameter('method ! "post")) {
       path("articles"){
         complete{
+          println("####################### This is the front page of articles #############################")
           masterActor ? "PrintFrontPage"
           masterActor ! "stringSlice"
           <html>
