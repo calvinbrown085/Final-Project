@@ -102,6 +102,7 @@ object PrintFrontPage {
     articleList = articleList :+"    "+ strAb
     articleList = articleList :+ "]"
     listStore(articleList,strTitle)
-    println(articleList)
+    print(articleList)
+
   }
 }
