@@ -13,8 +13,8 @@ object JsonFormatting {
     }
     import MyJsonProtocol._
     val toJson = DictionaryPath.DictWords(newDict.word).toJson
-    val dict = toJson.convertTo[DictionaryPath.DictWords]
-    println("  "+dict.word)
+    val jsonDictionary = toJson.convertTo[DictionaryPath.DictWords]
+    println("  "+jsonDictionary.word)
 
 
   }

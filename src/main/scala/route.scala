@@ -133,8 +133,8 @@ trait RoutePath extends App with SimpleRoutingApp  {
 
 class MyActor extends Actor {
   def receive = {
-    case "PrintFrontPage" => PrintFrontPage.xmlSlice(0)
-    case "stringSlice" => ListBuilder.xmlSlice(0)
+    case "PrintFrontPage" => PrintFrontPage.xmlParser(0)
+    case "stringSlice" => ListBuilder.xmlParser(0)
     case "dictPrint" => DictionaryPath.dictPrint()
     case _      =>  println("received unknown message")
 

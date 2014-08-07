@@ -1,12 +1,8 @@
 package com.banno.finalProj
-import spray.json._
-import DefaultJsonProtocol._
-// turn the storage into a case class to store the objects
-// only return json articles not anything else
-// cut down the number of lists and make it only like 1 or 2 and then decide if you still need list store or not
+
 object PrintFrontPage {
 
-  def xmlSlice(searchCount: Int): Unit = {
+  def xmlParser(searchCount: Int): Unit = {
 
     if (searchCount > 9){
       return
@@ -41,7 +37,7 @@ object PrintFrontPage {
 
       stringBuilder(newId.text,newTitle.text,newEAuthor.text,newPub.text,newUp.text,matchFind.trim)
 
-      xmlSlice(searchCount + 1)
+      xmlParser(searchCount + 1)
     }
   }
   def listStore(articleList: List[String],articleTitle: String): Option[List[String]] = {

@@ -4,7 +4,7 @@ import spray.json._
 import DefaultJsonProtocol._
 object ListBuilder {
 
-  def xmlSlice(searchCount: Int): Unit = {
+  def xmlParser(searchCount: Int): Unit = {
 
     if (searchCount > 9){
       return
@@ -39,7 +39,7 @@ object ListBuilder {
 
       stringBuilder(newId.text,newTitle.text,newEAuthor.text,newPub.text,newUp.text,matchFind.trim)
 
-      xmlSlice(searchCount + 1)
+      xmlParser(searchCount + 1)
     }
   }
 

@@ -21,8 +21,8 @@ object ListStore  {
       Nil
     }
     else{
-      val newList = completeArticleList.flatten
-      newList
+      val newArticleList = completeArticleList.flatten
+      newArticleList
     }
   }
 
