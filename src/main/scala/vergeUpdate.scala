@@ -12,26 +12,26 @@ object ListBuilder {
     else {
 
       val newReg = """<(.|\n)*?>""".r
-      val newXml = xml.XML.load("http://www.theverge.com/rss/frontpage.xml")
+      val articleXml = xml.XML.load("http://www.theverge.com/rss/frontpage.xml")
 
-      val newRawId = newXml\"entry"\"id"
+      val newRawId = articleXml\"entry"\"id"
       val newId = newRawId(searchCount)
       //this gets the id
 
-      val newRawTitle = newXml\\"entry"\\"title"
+      val newRawTitle = articleXml\\"entry"\\"title"
       val newTitle = newRawTitle(searchCount)
       //This gets the title
-      val newRawAuthor = newXml\\"author"\\"name"
+      val newRawAuthor = articleXml\\"author"\\"name"
       val newEAuthor = newRawAuthor(searchCount)
 
       //this gets the author
-      val newRawPub = newXml\\"entry"\"published"
+      val newRawPub = articleXml\\"entry"\"published"
       val newPub = newRawPub(searchCount)
       //this gets the published date
-      val newRawUp = newXml\\"entry"\"updated"
+      val newRawUp = articleXml\\"entry"\"updated"
       val newUp = newRawUp(searchCount)
       //this is got get the updated date
-      val newRawContent = newXml\"entry"\"content"
+      val newRawContent = articleXml\"entry"\"content"
       val newContent = newRawContent(searchCount)
       val matchFind = newReg.replaceAllIn(newContent.text,"")
       //this is to get the content
