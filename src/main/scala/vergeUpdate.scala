@@ -27,12 +27,6 @@ object ListBuilder {
     val newArt = ArticleStore.Article(strId,strTitle,strAuthor,strPub,strUp,strAb)
     ArticleStore.storeArticle(newArt)
     JsonFormatting.createList(newArt)
-    ListStore.dictionaryList = ListStore.dictionaryList :+id
-    ListStore.dictionaryList = ListStore.dictionaryList :+title
-    ListStore.dictionaryList = ListStore.dictionaryList :+author
-    ListStore.dictionaryList = ListStore.dictionaryList :+pub
-    ListStore.dictionaryList = ListStore.dictionaryList :+up
-    ListStore.dictionaryList = ListStore.dictionaryList:+ ab
     ListStore.articleString = ab
     articleList = articleList :+ "articles: ["+"\n"
     articleList = articleList :+"    "+ strId
