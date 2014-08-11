@@ -19,9 +19,9 @@ import spray.http._
 
 
 
-trait RoutePath extends  SimpleRoutingApp  {
+trait RoutePath extends App with SimpleRoutingApp  {
 
-  implicit  val system = ActorSystem()
+  implicit val system = ActorSystem()
 
   val masterActor = system.actorOf(Props[MyActor].withDispatcher("my-dispatcher"), name = "myActor1")
   implicit val timeout = Timeout(30 seconds)
