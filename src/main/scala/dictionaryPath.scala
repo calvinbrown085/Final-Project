@@ -19,6 +19,7 @@ object DictionaryPath {
     var slicedList: List[Any] = Nil
 
     var wordDict = ListStore.dictionaryList.mkString.split(" ").toList
+
     wordDict = wordDict.map(_.toLowerCase())
     wordDict = wordDict.filterNot(_ == "reading&hellip;")
     dictHelper(0)

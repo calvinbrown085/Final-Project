@@ -8,8 +8,6 @@ def articleSearcher(searchString: String,otherList: List[String],searchCount : I
     val newArtcle = ListStore.getArticle()
     var userArticleList = otherList
     val frontSlice = articleList(searchCount).toString.slice(8,articleList(searchCount).length)
-    println(frontSlice)
-    println(searchString)
     if (searchCount >= articleList.length - 7) {
       return userArticleList
     }

@@ -24,7 +24,5 @@ object ContentSearch {
 
     }
     contentSearcher(searchString,totalContentList,searchCount + 8)
-
-
   }
 }
