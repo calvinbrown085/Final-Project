@@ -18,8 +18,8 @@ object ListBuilder {
 
     var articleList: List[String] = Nil
     val newAb = PrintFrontPage.sliceHelper(ab)
-    val strId = "id: "+id+"\n"
-    val strTitle = "title: "+title+"\n"
+    val strId = "Id: "+id+"\n"
+    val strTitle = "Title: "+title+"\n"
     val strAuthor = "Author: "+author+"\n"
     val strPub = "Published: "+pub+"\n"
     val strUp = "Updated: "+up+"\n"

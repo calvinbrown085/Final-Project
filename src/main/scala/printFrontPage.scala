@@ -46,13 +46,19 @@ object PrintFrontPage {
 
     var articleList: List[String] = Nil
     val newAb = sliceHelper(ab)
-    val strId = "id: "+id+"\n"
-    val strTitle = "title: "+title+"\n"
+    val strId = "Id: "+id+"\n"
+    val strTitle = "Title: "+title+"\n"
     val strAuthor = "Author: "+author+"\n"
     val strPub = "Published: "+pub+"\n"
     val strUp = "Updated: "+up+"\n"
     val strAb = "Abstract: "+newAb+"...."+"\n"
 
+    ListStore.dictionaryList = ListStore.dictionaryList :+id
+    ListStore.dictionaryList = ListStore.dictionaryList :+title
+    ListStore.dictionaryList = ListStore.dictionaryList :+author
+    ListStore.dictionaryList = ListStore.dictionaryList :+pub
+    ListStore.dictionaryList = ListStore.dictionaryList :+up
+    ListStore.dictionaryList = ListStore.dictionaryList:+ ab
     articleList = articleList :+ "articles: ["+"\n"
     articleList = articleList :+"    "+ strId
     articleList = articleList :+"    "+ strTitle
