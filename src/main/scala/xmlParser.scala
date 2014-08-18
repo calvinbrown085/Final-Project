@@ -38,9 +38,9 @@ object XmlParser {
       val newContent = newRawContent(searchCount)
       val matchFind = newReg.replaceAllIn(newContent.text,"")
       //this is to get the content
-
+      val newArt = ArticleStore.Article(newId.text,newTitle.text,newEAuthor.text,newPub.text,newUp.text,matchFind.trim)
       if (bool == false){
-        ListBuilder.stringBuilder(newId.text,newTitle.text,newEAuthor.text,newPub.text,newUp.text,matchFind.trim)
+        ListBuilder.stringBuilder(newArt)
       }
       else {
         PrintFrontPage.stringBuilder(newId.text,newTitle.text,newEAuthor.text,newPub.text,newUp.text,matchFind.trim)
