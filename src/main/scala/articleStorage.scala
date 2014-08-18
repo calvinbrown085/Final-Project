@@ -31,7 +31,7 @@ object ArticleStore {
                                               newArt.pub,
                                               newArt.up,
                                               newArt.ab))
-        val queriedArticles: List[Article] = from(ArticleSchema.articles)(e => select(e)).toList
+        //val queriedArticles: List[Article] = from(ArticleSchema.articles)(e => select(e)).toList
       }
   }
 

@@ -22,10 +22,10 @@ import spray.http._
 trait RoutePath extends App with SimpleRoutingApp  {
 
   implicit val system = ActorSystem()
+  val masterActor = system.actorOf(Props[MyActor], name = "myActor1")
 
-  val masterActor = system.actorOf(Props[MyActor].withDispatcher("my-dispatcher"), name = "myActor1")
-  println("ASS")
   implicit val timeout = Timeout(30 seconds)
+
   val route: Route =
 
 
