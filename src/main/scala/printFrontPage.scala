@@ -59,7 +59,7 @@ object PrintFrontPage {
     ListStore.dictionaryList = ListStore.dictionaryList :+pub
     ListStore.dictionaryList = ListStore.dictionaryList :+up
     ListStore.dictionaryList = ListStore.dictionaryList:+ ab
-    articleList = articleList :+ "articles: ["+"\n"
+    articleList = articleList :+ "Articles: ["+"\n"
     articleList = articleList :+"    "+ strId
     articleList = articleList :+"    "+ strTitle
     articleList = articleList :+"    "+ strAuthor
