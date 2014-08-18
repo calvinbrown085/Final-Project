@@ -42,30 +42,20 @@ object PrintFrontPage {
 
 
   //this builds the readable string for the user to read
-  def stringBuilder(id: String,title: String,author: String,pub: String,up:String,ab:String): Unit  ={
+  def stringBuilder(article: ArticleStore.Article): Unit  ={
 
     var articleList: List[String] = Nil
-    val newAb = sliceHelper(ab)
-    val strId = "Id: "+id+"\n"
-    val strTitle = "Title: "+title+"\n"
-    val strAuthor = "Author: "+author+"\n"
-    val strPub = "Published: "+pub+"\n"
-    val strUp = "Updated: "+up+"\n"
+    val newAb = sliceHelper(article.ab)
+    val strId = "Id: "+article.id+"\n"
+    val strTitle = "Title: "+article.title+"\n"
+    val strAuthor = "Author: "+article.author+"\n"
+    val strPub = "Published: "+article.pub+"\n"
+    val strUp = "Updated: "+article.up+"\n"
     val strAb = "Abstract: "+newAb+"...."+"\n"
-
-    ListStore.dictionaryList = ListStore.dictionaryList :+id
-    ListStore.dictionaryList = ListStore.dictionaryList :+title
-    ListStore.dictionaryList = ListStore.dictionaryList :+author
-    ListStore.dictionaryList = ListStore.dictionaryList :+pub
-    ListStore.dictionaryList = ListStore.dictionaryList :+up
-    ListStore.dictionaryList = ListStore.dictionaryList:+ ab
-    articleList = articleList :+ "Articles: ["+"\n"
-    articleList = articleList :+"    "+ strId
-    articleList = articleList :+"    "+ strTitle
-    articleList = articleList :+"    "+ strAuthor
-    articleList = articleList :+"    "+ strPub
-    articleList = articleList :+"    "+ strUp
-    articleList = articleList :+"    "+ strAb
+    val newArt = ArticleStore.Article(strId,strTitle,strAuthor,strPub,strUp,strAb)
+    ListStore.dictionaryList = ListStore.dictionaryList:+ newArt.toString
+    articleList = articleList :+ "articles: ["+"\n"
+    articleList = articleList :+ newArt.toString
     articleList = articleList :+ "]"
     listStore(articleList,strTitle)
     println(articleList)

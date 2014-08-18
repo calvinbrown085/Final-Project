@@ -43,7 +43,7 @@ object XmlParser {
         ListBuilder.stringBuilder(newArt)
       }
       else {
-        PrintFrontPage.stringBuilder(newId.text,newTitle.text,newEAuthor.text,newPub.text,newUp.text,matchFind.trim)
+        PrintFrontPage.stringBuilder(newArt)
       }
 
       xmlParser(searchCount + 1,bool)
