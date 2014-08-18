@@ -2,4 +2,5 @@
 
 
 
-This will run the final projectasdfasdfasdfasdf
+To run the final project, dig into the src/main/scala/route.scala and go to sbt.
+Then compile,and run. Type localhost:8080 on your browser bar and click on the links from there!
