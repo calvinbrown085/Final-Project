@@ -9,13 +9,8 @@ import org.squeryl.SessionFactory
 import org.squeryl.adapters.PostgreSqlAdapter
 import java.util.Calendar
 
-object ArticleStore {
-  case class Article(@Column("id") id: String,
-                     @Column("title") title: String,
-                     @Column("author") author: String,
-                     @Column("published") pub: String,
-                     @Column("updated") up: String,
-                     @Column("abstract") ab: String)
+object DatabaseStore {
+
 
   Class.forName("org.postgresql.Driver")
   SessionFactory.concreteFactory = Some(() =>
@@ -23,9 +18,9 @@ object ArticleStore {
       java.sql.DriverManager.getConnection("jdbc:postgresql://localhost/ArticleStorage","calvinb","calwil100"),
       new PostgreSqlAdapter()))
 
-  def storeArticle(newArt: Article): Unit = {
+  def storeArticle(newArt: ArticleStore.Article): Unit = {
       transaction {
-        ArticleSchema.articles.insert(Article(newArt.id,
+        ArticleSchema.articles.insert(ArticleStore.Article(newArt.id,
                                               newArt.title,
                                               newArt.author,
                                               newArt.pub,
