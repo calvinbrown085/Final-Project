@@ -43,7 +43,7 @@ object PrintFrontPage {
 
   //this builds the readable string for the user to read
   def stringBuilder(id: String,title: String,author: String,pub: String,up:String,ab:String): Unit  ={
-
+    println("HEllo")
     var articleList: List[String] = Nil
     val newAb = sliceHelper(ab)
     val strId = "Id: "+id+"\n"
