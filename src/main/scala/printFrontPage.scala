@@ -54,9 +54,7 @@ object PrintFrontPage {
     val strAb = "Abstract: "+newAb+"...."+"\n"
     val newArt = ArticleStore.Article(strId,strTitle,strAuthor,strPub,strUp,strAb)
     ListStore.dictionaryList = ListStore.dictionaryList:+ newArt.toString
-    articleList = articleList :+ "articles: ["+"\n"
-    articleList = articleList :+ newArt.toString
-    articleList = articleList :+ "]"
+    JsonFormatting.createList(newArt)
     listStore(articleList,strTitle)
     println(articleList)
 

@@ -26,7 +26,6 @@ object ListBuilder {
     val strAb = "Abstract: "+newAb+"...."+"\n"
     val newArt = ArticleStore.Article(strId,strTitle,strAuthor,strPub,strUp,strAb)
     DatabaseStore.storeArticle(newArt)
-    JsonFormatting.createList(newArt)
     ListStore.articleString = article.ab
     articleList = articleList :+ "articles: ["+"\n"
     articleList = articleList :+ newArt.toString
