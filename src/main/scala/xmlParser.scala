@@ -7,12 +7,11 @@ import DefaultJsonProtocol._
 object XmlParser {
 
 
-  def xmlParser(searchCount: Int, bool: Boolean): Unit = {
+  def xmlParser(searchCount: Int, bool: Boolean): Unit = bool match {
 
-    if (searchCount > 9){
-      return
-    }
-    else {
+    case bool if (searchCount > 9) => return
+
+    case _ => {
 
       val newReg = """<(.|\n)*?>""".r
       val articleXml = xml.XML.load("http://www.theverge.com/rss/frontpage.xml")

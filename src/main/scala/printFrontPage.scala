@@ -7,7 +7,6 @@ object PrintFrontPage {
     val completeArticleList: List[String] = ListStore.completeArticleList.flatten
     if (ListStore.completeArticleList == Nil){
       ListStore.completeArticleList = ListStore.completeArticleList :+ articleList
-
       return Some(completeArticleList)
     }
 
@@ -28,13 +27,13 @@ object PrintFrontPage {
     var contentList = content.toList
     var contentStr = ""
     strSliceHelper(0)
-    def strSliceHelper(intCount: Int): String = {
-      if(contentList(intCount).toString == "." && intCount > 50){
+    def strSliceHelper(intCount: Int): String = intCount match {
+      case intCount if(contentList(intCount).toString == "." && intCount > 50) => {
         contentList = contentList.slice(0,intCount)
         contentStr = contentList.mkString
         return contentStr
       }
-      strSliceHelper(intCount + 1)
+      case _  =>  strSliceHelper(intCount + 1)
     }
     contentStr
   }
