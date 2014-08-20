@@ -3,7 +3,7 @@ package com.banno.finalProj
 
 object ArticleSearch {
 
-def articleSearcher(searchString: String,otherList: List[ArticleStore.Article],searchCount : Int): List[ArticleStore.Article] = {
+def articleSearcher(searchString: String,otherList: List[ArticleStore.Article]): List[ArticleStore.Article] = {
     val articleList = ListStore.getList()
     var userArticleList = otherList
 
