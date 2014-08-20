@@ -32,10 +32,10 @@ trait RoutePath extends App with SimpleRoutingApp  {
       get {
 
         pathSingleSlash {
-        redirect("/home",StatusCodes.Found)
+        redirect("/homePage",StatusCodes.Found)
 
         } ~
-        path("home") {
+        path("homePage") {
           complete {
             <html>
               <h1>Welcome, please get some updates from the verge!</h1>in
@@ -72,7 +72,7 @@ trait RoutePath extends App with SimpleRoutingApp  {
           masterActor ? "PrintFrontPage"
           masterActor ! "stringSlice"
           <html>
-            <q>{}</q>
+            {}
           </html>
         }
       }
