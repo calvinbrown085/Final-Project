@@ -3,19 +3,18 @@ package com.banno.finalProj
 object PrintFrontPage {
 
 
-  def listStore(articleList: List[String],articleTitle: String): Option[List[String]] = {
-    val completeArticleList: List[String] = ListStore.completeArticleList.flatten
+  def listStore(article: ArticleStore.Article): Option[List[ArticleStore.Article]] = {
     if (ListStore.completeArticleList == Nil){
-      ListStore.completeArticleList = ListStore.completeArticleList :+ articleList
-      return Some(completeArticleList)
+      ListStore.completeArticleList = ListStore.completeArticleList :+ article
+      return Some(ListStore.completeArticleList)
     }
 
     else{
 
-      ListStore.completeArticleList = ListStore.completeArticleList :+ articleList
+      ListStore.completeArticleList = ListStore.completeArticleList :+ article
     }
 
-    Some(completeArticleList)
+    Some(ListStore.completeArticleList)
 
   }
 
@@ -56,7 +55,7 @@ object PrintFrontPage {
     articleList = newArt.toString +: articleList
     articleList = articleList.reverse
     JsonFormatting.createList(newArt)
-    listStore(articleList,strTitle)
+    listStore(newArt)
 
 
   }
