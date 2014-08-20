@@ -18,9 +18,10 @@ object JsonFormatting {
 
 
   }
-  def createList(newArt: ArticleStore.Article): Unit = {
+  def createList(newArt: ArticleStore.Article): ArticleStore.Article = {
     ListStore.totalArticleList = ListStore.totalArticleList :+ newArt
     jsonFormatting(newArt)
+    newArt
   }
 
   def jsonFormatting(newArt: ArticleStore.Article): ArticleStore.Article = {

@@ -40,7 +40,7 @@ object PrintFrontPage {
 
 
   //this builds the readable string for the user to read
-  def stringBuilder(article: ArticleStore.Article): Unit  ={
+  def stringBuilder(article: ArticleStore.Article): ArticleStore.Article  ={
 
     var articleList: List[String] = Nil
     val newAb = sliceHelper(article.ab)
@@ -54,8 +54,10 @@ object PrintFrontPage {
     ListStore.dictionaryList = ListStore.dictionaryList:+ newArt.toString
     articleList = newArt.toString +: articleList
     articleList = articleList.reverse
-    JsonFormatting.createList(newArt)
     listStore(newArt)
+    JsonFormatting.createList(newArt)
+
+
 
 
   }
