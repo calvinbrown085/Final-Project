@@ -3,7 +3,7 @@ package com.banno.finalProj
 //switch the if statments to pattern matching
 
 object ListStore  {
-  var completeArticleList: List[List[String]] = Nil
+  var completeArticleList: List[ArticleStore.Article] = Nil
   var articleString: String = ""
   var dictionaryList: List[String] = Nil
   var totalArticleList: List[ArticleStore.Article] = Nil
@@ -15,15 +15,12 @@ object ListStore  {
     articleString
   }
   //this will get the list and print it out to the user
-  def getList(): List[String] = {
-    if (completeArticleList == Nil){
+  def getList(): List[ArticleStore.Article] = {
+    if (completeArticleList == Nil)  Nil
+    else completeArticleList
 
-      Nil
-    }
-    else{
-      val newArticleList = completeArticleList.flatten
-      newArticleList
-    }
+
+
   }
 
 

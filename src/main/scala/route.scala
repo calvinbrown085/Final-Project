@@ -81,7 +81,7 @@ trait RoutePath extends App with SimpleRoutingApp  {
         get{
 
           parameter('q) { searchString =>
-            val otherList: List[String] = Nil
+            val otherList: List[ArticleStore.Article] = Nil
             val newList = TitleSearch.titleSearcher(searchString,otherList,2)
             if(newList != Nil){
               complete(s"The query is '$searchString these are the results '$newList'")
@@ -96,8 +96,8 @@ trait RoutePath extends App with SimpleRoutingApp  {
       path("content"){
         get{
           parameter('q) { searchString =>
-            val otherList: List[String] = Nil
-            val newList = ContentSearch.contentSearcher(searchString,otherList,6)
+            val otherList: List[ArticleStore.Article] = Nil
+            val newList = ContentSearch.contentSearcher(searchString,otherList)
             if(newList != Nil){
               complete(s"The query is '$searchString these are the results '$newList'")
             }
@@ -112,7 +112,7 @@ trait RoutePath extends App with SimpleRoutingApp  {
       path("article"){
         get{
           parameter('q) { searchString =>
-            val otherList: List[String] = Nil
+            val otherList: List[ArticleStore.Article] = Nil
             val newList = ArticleSearch.articleSearcher(searchString,otherList,1)
             if(newList != Nil){
               complete(s"The query is: '$searchString these are the results '$newList'")
