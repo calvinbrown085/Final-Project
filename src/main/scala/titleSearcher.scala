@@ -3,7 +3,7 @@ package com.banno.finalProj
 
 object TitleSearch {
 
-   def titleSearcher(searchString: String,otherList: List[ArticleStore.Article],searchCount : Int): List[ArticleStore.Article] = {
+   def titleSearcher(searchString: String,otherList: List[ArticleStore.Article]): List[ArticleStore.Article] = {
     val articleList = ListStore.getList()
     var titleList = otherList
      articleList.map{article =>
